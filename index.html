@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>우드티켓 | 소액결제 현금화, 가장 안전하고 빠르게</title>
+<meta name="description" content="우드티켓은 핸드폰·정보이용료·신용카드로 소액결제 현금화가 가능합니다. 365일 24시간 업계 최고 매입율, 3분 내 즉시 입금. 믿을 수 있는 소액결제 현금화 파트너." />
+<meta name="keywords" content="우드티켓, 핸드폰 소액결제 현금화, 정보이용료 현금화, 신용카드 현금화, 상품권 현금화" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<link rel="canonical" href="https://www.woodticket.co.kr/" />
+<link rel="icon" type="image/jpeg" sizes="32x32" href="images/favicon-32x32.jpg" />
+<link rel="icon" type="image/jpeg" sizes="16x16" href="images/favicon-16x16.jpg" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.jpg" />
+<link rel="shortcut icon" href="images/favicon.ico" />
+<meta property="og:type" content="website" /><meta property="og:title" content="우드티켓 | 소액결제 현금화" /><meta property="og:description" content="핸드폰·정보이용료·신용카드 매입. 365일 24시간, 업계 최고 매입율과 3분 내 즉시 입금." /><meta property="og:url" content="https://www.woodticket.co.kr/" /><meta property="og:locale" content="ko_KR" /><meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"우드티켓","description":"소액결제 현금화 전문 서비스","url":"https://www.woodticket.co.kr/","telephone":"010-0000-0000","openingHours":"Mo-Su 00:00-24:00","priceRange":"₩₩"}
+</script>
+<style id="wt-loader-style">
+
+.scene{position:fixed;inset:0;overflow:hidden;background:#04040a;z-index:99999}
+#warp{position:absolute;inset:0;z-index:1}
+.l{position:absolute;inset:0;pointer-events:none}
+
+/* 중앙 진행 원 */
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+  width:min(280px,58vw);aspect-ratio:1/1;display:grid;place-items:center}
+.hub svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hub .track{fill:none;stroke:rgba(160,185,255,.16);stroke-width:2}
+.hub .glow{fill:none;stroke:url(#g);stroke-width:8;stroke-linecap:round;opacity:.55;
+  stroke-dasharray:var(--c);stroke-dashoffset:var(--c)}
+.hub .bar{fill:none;stroke:url(#g);stroke-width:4.5;stroke-linecap:round;
+  stroke-dasharray:var(--c);stroke-dashoffset:var(--c)}
+.scene.run .hub .glow,.scene.run .hub .bar{animation:fill 1.5s cubic-bezier(.4,0,.5,1) forwards}
+@keyframes fill{to{stroke-dashoffset:0}}
+@keyframes hubGlow{0%,100%{opacity:.7;transform:scale(.95)}50%{opacity:1;transform:scale(1.08)}}
+
+
+.cap{position:absolute;left:0;right:0;bottom:12%;z-index:7;text-align:center;
+  color:rgba(170,182,210,.8);font-size:.84rem;letter-spacing:.16em;font-weight:300}
+.cap .brand{font-weight:700;font-size:1.05rem;letter-spacing:.24em;display:block;margin-bottom:.5rem;
+  background:linear-gradient(90deg,#cfe0ff,#9a8ef0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* 비네팅(가장자리만 살짝 어둡게 → 워프 깊이감) */
+.vignette{z-index:3;background:radial-gradient(140% 120% at 50% 50%,transparent 62%,rgba(4,4,10,.32) 100%)}
+
+.scene.boom .hub,.scene.boom .pct,.scene.boom .cap{animation:fade .35s ease forwards}
+@keyframes fade{to{opacity:0}}
+.scene.done{animation:reveal .5s ease forwards}
+@keyframes reveal{to{opacity:0;visibility:hidden}}
+
+@media (prefers-reduced-motion:reduce){.scene.run .hub .bar{animation-duration:.01ms!important}}
+
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <canvas id="warp"></canvas>
+
+  <div class="hub">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3.4"/>
+        </filter>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#9ad0ff"/>
+          <stop offset=".35" stop-color="#cfe0ff"/>
+          <stop offset=".5" stop-color="#ffffff"/>
+          <stop offset=".65" stop-color="#dfeaff"/>
+          <stop offset="1" stop-color="#b3a8f5"/>
+          <animateTransform attributeName="gradientTransform" type="rotate"
+            from="0 100 100" to="360 100 100" dur="3.2s" repeatCount="indefinite"/>
+        </linearGradient>
+      </defs>
+      <circle class="track" cx="100" cy="100" r="92"/>
+      <circle class="glow" cx="100" cy="100" r="92" filter="url(#soft)"/>
+      <circle class="bar" cx="100" cy="100" r="92"/>
+    </svg>
+  </div>
+  <div class="cap"><span class="brand">WOODTICKET</span></div>
+
+  <div class="l vignette"></div>
+</div>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset=".45" stop-color="#c6ced9"/><stop offset=".7" stop-color="#99a3b3"/><stop offset="1" stop-color="#6e7888"/></linearGradient>
+  <linearGradient id="foilV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#6e7888"/></linearGradient>
+  <linearGradient id="foilB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe0ff"/><stop offset="1" stop-color="#5b9bff"/></linearGradient>
+  <linearGradient id="periw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b3a8f5"/><stop offset="1" stop-color="#6655d0"/></linearGradient>
+  <linearGradient id="periwV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4baf9"/><stop offset="1" stop-color="#6a5ad8"/></linearGradient>
+  <linearGradient id="silv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f3f8"/><stop offset="1" stop-color="#aab2c0"/></linearGradient>
+  <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs></svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="brand" aria-label="우드티켓 홈"><span class="brand-mark" aria-hidden="true"><img class="brand-w" src="images/logo-mark.jpg" alt="" width="40" height="40" /></span><span class="brand-text">우드티켓</span></a>
+    <div class="header-menu" id="headerMenu">
+      <nav class="nav" id="nav" aria-label="주요 메뉴"><a href="#items">서비스</a><a href="#how">이용방법</a><a href="#live">실시간 거래내역</a><a href="#review">고객후기</a></nav>
+      <div class="header-actions">
+        <a href="tel:01000000000" data-phone class="header-phone"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>전화 상담</a>
+        <a href="#contact" data-kakao class="btn btn-gold header-cta"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.8-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>카카오톡 상담</a>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="headerMenu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal"><span class="dot"></span><span class="eyebrow-txt"> 현금화 거래의 새로운 기준</p>
+      <h1 class="hero-title reveal">소액결제 현금화,<br /><span class="accent">우드티켓</span>에서<br class="br-mo" /> <br class="br-pc" />가장 안전하게</h1>
+      <p class="hero-sub reveal">365일 24시간 · 업계 최고 매입율 · 3분 내 즉시 입금 <br class="br-pc" />믿을 수 있는 현금화 거래 파트너, 우드티켓이 함께합니다.</p>
+      <div class="hero-cta reveal"><a href="#contact" data-kakao class="btn btn-gold"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.8-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>카카오톡 상담</a><a href="tel:01000000000" data-phone class="btn btn-ghost light"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>전화 상담</a></div>
+      <ul class="hero-stats reveal" aria-label="핵심 지표"><li><strong><b data-count="98">0</b><i>%</i></strong><span>정책·미납 승인율</span></li><li><strong><b data-count="3">0</b><i>분</i></strong><span>즉시 입금</span></li><li><strong><b data-count="24">0</b><i>시간</i></strong><span>연중무휴</span></li></ul>
+    </div>
+    <div class="hero-visual reveal" aria-hidden="true">
+      <div class="hero-stage">
+        <svg class="hero-rings" viewBox="0 0 600 600"><g fill="none" stroke="url(#foil)" stroke-width="1.4"><circle cx="300" cy="300" r="120" opacity=".3"/><circle cx="300" cy="300" r="185" opacity=".22"/><circle cx="300" cy="300" r="252" opacity=".15"/><circle cx="300" cy="300" r="320" opacity=".09"/></g></svg>
+        <div class="swirl"><span class="p" style="--a0:0deg;--m:1.05;--dl:0.0s"></span><span class="p" style="--a0:36deg;--m:0.8;--dl:0.42s"></span><span class="p" style="--a0:72deg;--m:1.12;--dl:0.84s"></span><span class="p" style="--a0:108deg;--m:0.7;--dl:1.26s"></span><span class="p" style="--a0:144deg;--m:0.95;--dl:1.68s"></span><span class="p" style="--a0:180deg;--m:1.18;--dl:2.1s"></span><span class="p" style="--a0:216deg;--m:0.85;--dl:2.52s"></span><span class="p" style="--a0:252deg;--m:1.0;--dl:2.94s"></span><span class="p" style="--a0:288deg;--m:0.75;--dl:3.36s"></span><span class="p" style="--a0:324deg;--m:1.1;--dl:3.78s"></span></div>
+        <div class="hero-device"><div class="phone-wrap"><svg class="phone-svg" viewBox="0 0 250 500" role="img" aria-label="입금 완료 알림">
+  <defs>
+    <linearGradient id="phFrame" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eff1f4"/><stop offset="1" stop-color="#c0c5cd"/></linearGradient>
+    <linearGradient id="phScreenW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfcfe"/><stop offset="1" stop-color="#eef1f5"/></linearGradient>
+  </defs>
+  <rect x="8" y="4" width="234" height="492" rx="44" fill="url(#phFrame)" stroke="#a7adb6" stroke-width="1.2"/>
+  <rect x="14" y="10" width="222" height="480" rx="40" fill="#191b20"/>
+  <rect x="20" y="16" width="210" height="468" rx="34" fill="url(#phScreenW)"/>
+  <rect x="96" y="29" width="58" height="9" rx="4.5" fill="#1b1d22"/>
+  <text x="125" y="80" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="23" font-weight="800" fill="#2a2d34" letter-spacing="1">우드티켓</text>
+  <g transform="translate(125,170)">
+    <circle class="chk-halo" r="50" fill="#5b9bff"/>
+    <circle r="38" fill="#f4f5f7" stroke="url(#foil)" stroke-width="2.5"/>
+    <circle class="chk-ring" r="44" fill="none" stroke="url(#foil)" stroke-width="2.5" stroke-dasharray="6 8" opacity=".75"/>
+    <path class="chk-mark" d="M-17 1 l11 12 l22 -26" fill="none" stroke="#3f7fe6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="125" y="254" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="11" font-weight="800" letter-spacing="3" fill="#2b5fc7">입금 완료</text>
+  <text x="125" y="284" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="12.5" fill="#6b717b">우드티켓님이 고객님의 계좌로</text>
+  <text x="125" y="318" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="24" font-weight="800" letter-spacing="-1" fill="#22252b">₩1,000,000</text>
+  <text x="125" y="342" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="12.5" fill="#3a3f47">입금하였습니다.</text>
+  <line x1="40" y1="366" x2="210" y2="366" stroke="#e4e7eb" stroke-width="1"/>
+  <g font-family='Noto Sans KR',sans-serif font-size="11.5">
+    <text x="42" y="392" fill="#9aa0a8">받는 분</text><text x="208" y="392" text-anchor="end" fill="#2b2f36">고객님 계좌</text>
+    <text x="42" y="418" fill="#9aa0a8">처리 시간</text><text x="208" y="418" text-anchor="end" fill="#2b2f36">즉시 완료</text>
+  </g>
+  <rect x="40" y="440" width="170" height="36" rx="18" fill="url(#foil)"/>
+  <text x="125" y="463" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="12.5" font-weight="800" fill="#241710">확인</text>
+</svg></div><div class="card-wrap"><svg class="herocard-svg" viewBox="0 0 300 188" role="img" aria-label="우드티켓 카드">
+  <defs><linearGradient id="cardK" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#30343b"/><stop offset="1" stop-color="#121317"/></linearGradient></defs>
+  <rect x="5" y="5" width="290" height="178" rx="20" fill="url(#cardK)"/>
+  <rect x="5" y="5" width="290" height="178" rx="20" fill="none" stroke="url(#foil)" stroke-width="1.2" opacity=".75"/>
+  <path d="M5 120 L295 28 V58 L5 150 Z" fill="#fff" opacity=".06"/>
+  <g transform="translate(40,52)"><rect x="-18" y="-15" width="48" height="36" rx="7" fill="url(#foil)"/><g stroke="#15171b" stroke-width="1.1" opacity=".55" fill="none"><path d="M-18 -3 H30 M-18 9 H30 M6 -15 V21"/></g></g>
+  <g transform="translate(250,52)"><path d="M0 -16 C-7 -10 -9 -3 -9 3 a9 9 0 0 0 18 0 c0 -6 -2 -13 -9 -19Z" fill="url(#foil)"/><path d="M0 4 V18" stroke="url(#foil)" stroke-width="2"/></g>
+  <text x="26" y="150" font-family='Noto Sans KR',sans-serif font-size="26" font-weight="800" fill="url(#foilV)" letter-spacing="1">우드티켓</text>
+  <text x="26" y="170" font-family='Noto Sans KR',sans-serif font-size="10.5" letter-spacing="3" fill="#fff" opacity=".5">소액결제·정보이용료·신용카드 현금화</text>
+  <text x="274" y="166" text-anchor="end" font-family='Noto Sans KR',sans-serif font-size="26" font-weight="800" fill="url(#foil)">₩</text>
+</svg></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span></span></div>
+</section>
+
+<section class="section items" id="items">
+  <span class="leaf-watermark lw-l" aria-hidden="true"></span>
+  <div class="container">
+    <header class="section-head reveal"><p class="kicker">WOODTICKET SERVICES</p><div class="ornament" aria-hidden="true"><i></i><svg viewBox="0 0 44 18"><path d="M22 3C15 3 7 8 2 15c8 1 15-2 20-8 5 6 12 9 20 8C37 8 29 3 22 3Z" fill="url(#foil)"/><path d="M22 7v8" stroke="#6e7888" stroke-width="1.3"/></svg><i></i></div><h2>우드티켓의 3가지 서비스</h2><p class="lead">핸드폰 · 정보이용료 · 신용카드 원하는 방식으로 현금화하세요.</p></header>
+    <div class="svc-grid">
+      <article class="svc-card reveal"><div class="svc-top"><span class="svc-glow"></span><div class="svc-ico"><svg viewBox="0 0 120 120" class="svc-svg" aria-hidden="true">
+ <rect x="38" y="10" width="44" height="100" rx="12" fill="rgba(63,127,230,.06)" stroke="url(#foil)" stroke-width="3.4"/>
+ <rect x="44" y="24" width="32" height="72" rx="4" fill="none" stroke="url(#foil)" stroke-width="1.3" opacity=".6"/>
+ <path d="M52 104 h16" stroke="url(#foil)" stroke-width="3" stroke-linecap="round"/>
+ <text x="60" y="68" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="25" font-weight="800" fill="url(#foil)" class="won-glow">₩</text>
+ <g fill="none" stroke="url(#foil)" stroke-width="3" stroke-linecap="round"><path class="wave w1" d="M88 30 a15 15 0 0 1 0 22"/><path class="wave w2" d="M96 22 a27 27 0 0 1 0 38"/></g>
+ <rect class="ic-run" x="38" y="10" width="44" height="100" rx="12" fill="none" stroke="url(#foilB)" stroke-width="3.4" pathLength="100"/>
+</svg></div></div><div class="svc-body"><h3>휴대폰 소액결제</h3>
+<div class="svc-rate"><strong>~75%</strong> 지급</div>
+<ul class="svc-list">
+<li>SKT · KT · LGU+ 모든 통신사</li>
+<li>최대 한도 <b>100만원</b></li>
+<li>미납 · 정책 제한도 OK</li>
+<li>신용점수 영향 없음</li>
+<li>최소 금액 5만원부터 가능</li>
+</ul></div></article>
+      <article class="svc-card reveal"><div class="svc-top"><span class="svc-glow"></span><div class="svc-ico"><svg viewBox="0 0 120 120" class="svc-svg" aria-hidden="true">
+ <g fill="rgba(63,127,230,.07)" stroke="url(#foil)" stroke-width="3">
+   <ellipse class="ln l3" cx="82" cy="84" rx="20" ry="7"/>
+   <ellipse class="ln l2" cx="82" cy="72" rx="20" ry="7"/>
+   <ellipse class="ln l1" cx="82" cy="60" rx="20" ry="7"/>
+ </g>
+ <path d="M62 60 V84 M102 60 V84" stroke="url(#foil)" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+ <circle cx="44" cy="54" r="27" fill="rgba(63,127,230,.12)" stroke="url(#foil)" stroke-width="3.6"/>
+ <circle cx="44" cy="54" r="21" fill="none" stroke="url(#foil)" stroke-width="1.4" opacity=".45"/>
+ <text x="44" y="65" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="28" font-weight="800" fill="url(#foil)" class="won-glow">₩</text>
+ <path class="twk" d="M101 28 l1.9 4.6 4.8 .7 -3.5 3.3 .8 4.8 -4 -2.3 -4 2.3 .8 -4.8 -3.5 -3.3 4.8 -.7 Z" fill="url(#foilB)"/>
+ <circle class="ic-run" cx="44" cy="54" r="27" fill="none" stroke="url(#foilB)" stroke-width="3.6" pathLength="100"/>
+</svg></div></div><div class="svc-body"><h3>정보 · 콘텐츠 이용료</h3>
+<div class="svc-rate"><strong>~85%</strong> 지급</div>
+<ul class="svc-list">
+<li>구글 · 애플 · 원스토어 OK</li>
+<li>최대 한도 <b>100만원</b></li>
+<li>소액결제와 합산 최대 200만원</li>
+<li>다양한 플랫폼 지원</li>
+<li>즉시 입금 처리</li>
+</ul></div></article>
+      <article class="svc-card svc-card--best reveal"><div class="svc-top"><span class="svc-glow"></span><div class="svc-ico"><svg viewBox="0 0 120 120" class="svc-svg" aria-hidden="true">
+ <rect x="14" y="30" width="80" height="56" rx="9" fill="rgba(63,127,230,.06)" stroke="url(#foil)" stroke-width="3.2"/>
+ <rect x="14" y="43" width="80" height="9" fill="url(#foil)" opacity=".5"/>
+ <rect x="24" y="60" width="18" height="13" rx="3" fill="none" stroke="url(#foil)" stroke-width="2.2"/>
+ <path d="M24 66.5 h18 M33 60 v13" stroke="url(#foil)" stroke-width="1.1" opacity=".7"/>
+ <g stroke="url(#foil)" stroke-width="2.6" stroke-linecap="round"><path class="ln l1" d="M52 68 h10"/><path class="ln l2" d="M66 68 h10"/></g>
+ <g fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-linecap="round"><path class="wave w1" d="M82 60 a8 8 0 0 1 0 12"/><path class="wave w2" d="M87 56 a15 15 0 0 1 0 20"/></g>
+ <path class="twk" d="M98 14 l2.2 5.2 5.4 .8 -4 3.8 1 5.4 -4.6 -2.6 -4.6 2.6 1 -5.4 -4 -3.8 5.4 -.8 Z" fill="url(#foilB)"/>
+ <rect class="ic-run" x="14" y="30" width="80" height="56" rx="9" fill="none" stroke="url(#foilB)" stroke-width="3.2" pathLength="100"/>
+</svg></div></div><div class="svc-body"><span class="svc-best-badge">BEST</span><h3>신용카드 현금화</h3>
+<div class="svc-rate svc-rate--best"><strong>최대 90%</strong> 지급</div>
+<ul class="svc-list">
+<li><b>업계 최고 지급률</b></li>
+<li>모든 카드사 가능</li>
+<li>한도 <b>무제한</b></li>
+<li>할부결제 가능</li>
+<li>신용점수 영향 없음</li>
+</ul></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section how" id="how">
+  <div class="container">
+    <header class="section-head reveal"><p class="kicker">HOW IT WORKS</p><div class="ornament" aria-hidden="true"><i></i><svg viewBox="0 0 44 18"><path d="M22 3C15 3 7 8 2 15c8 1 15-2 20-8 5 6 12 9 20 8C37 8 29 3 22 3Z" fill="url(#foil)"/><path d="M22 7v8" stroke="#6e7888" stroke-width="1.3"/></svg><i></i></div><h2>단 4단계, 3분이면 끝</h2><p class="lead">복잡한 절차 없이 누구나 쉽고 빠르게 거래할 수 있습니다.</p></header>
+    <ol class="step-list">
+      <span class="step-beam" aria-hidden="true"></span>
+      <li class="step reveal"><div class="step-medal"><svg viewBox="0 0 48 48" class="medal-ico"><g fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h28a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H22l-8 7v-7h-4a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3Z"/><path d="M16 20h16M16 26h10"/></g></svg><span class="step-num">01</span></div><div class="step-body"><h3>상담 신청</h3><p>카카오톡·전화로 진행하시려는 상품과 금액을 알려주세요.</p></div></li>
+      <li class="step reveal"><div class="step-medal"><svg viewBox="0 0 48 48" class="medal-ico"><g fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M25 7 9 23a3 3 0 0 0 0 4l12 12a3 3 0 0 0 4 0L41 23V11a4 4 0 0 0-4-4Z"/><circle cx="33" cy="15" r="2.6" fill="url(#foil)" stroke="none"/></g></svg><span class="step-num">02</span></div><div class="step-body"><h3>한도 확인</h3><p>핸드폰·정보이용료·신용카드 한도를 <br class="br-pc" />실시간으로 확인해 드립니다.</p></div></li>
+      <li class="step reveal"><div class="step-medal"><svg viewBox="0 0 48 48" class="medal-ico"><g fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M41 7 7 21l13 6 6 13Z"/><path d="M41 7 20 27"/></g></svg><span class="step-num">03</span></div><div class="step-body"><h3>결제 진행</h3><p>안내에 따라 간단히 결제만 진행하시면 매입이 완료됩니다.</p></div></li>
+      <li class="step reveal"><div class="step-medal"><svg viewBox="0 0 48 48" class="medal-ico"><g fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="14" width="34" height="22" rx="4"/><circle cx="24" cy="25" r="5"/><path d="M14 14V10h20v4"/></g></svg><span class="step-num">04</span></div><div class="step-body"><h3>즉시 입금</h3><p>확인 즉시 3분 내 입금. 기다림 없이<br class="br-pc" />바로 현금화하세요.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section why" id="why">
+  <div class="container">
+    <header class="section-head reveal"><p class="kicker light">WHY WOODTICKET</p><div class="ornament light" aria-hidden="true"><i></i><svg viewBox="0 0 44 18"><path d="M22 3C15 3 7 8 2 15c8 1 15-2 20-8 5 6 12 9 20 8C37 8 29 3 22 3Z" fill="url(#foil)"/><path d="M22 7v8" stroke="#dfe6ef" stroke-width="1.3"/></svg><i></i></div><h2>왜 우드티켓을 선택해야 할까요</h2><p class="lead">자연처럼 단단하고 정직한 거래. 신뢰는 결과로 증명합니다.</p></header>
+    <div class="feature-grid">
+      <article class="feature reveal"><div class="feature-ico"><span class="fi-ring"></span><svg viewBox="0 0 48 48"><path d="M17 23 L12 43 l6-3.5 5 3 -3.5-14Z" fill="#9aa1ab"/><path d="M31 23 L36 43 l-6-3.5 -5 3 3.5-14Z" fill="url(#silv)"/><circle cx="24" cy="18" r="13.5" fill="url(#periwV)"/><circle cx="24" cy="18" r="13.5" fill="none" stroke="#cdc3fb" stroke-width="1.4" opacity=".55"/><circle cx="24" cy="18" r="9.5" fill="none" stroke="#fff" stroke-width="1" opacity=".22"/><path d="M24 10.5 l2.2 4.7 5.1 .5 -3.85 3.5 1.05 5 -4.5 -2.6 -4.5 2.6 1.05 -5 -3.85 -3.5 5.1 -.5Z" fill="#fff"/><ellipse cx="18.5" cy="12.5" rx="4.2" ry="2.4" fill="#fff" opacity=".22" transform="rotate(-38 18.5 12.5)"/></svg></div><h3>업계 최고 매입율</h3><p>실시간 시세를 반영, 투명한 매입가.<br> 한 푼도 손해 없이 최고가로 보장합니다.</p></article>
+      <article class="feature reveal"><div class="feature-ico"><span class="fi-ring"></span><svg viewBox="0 0 48 48"><path d="M7 17 h7 M5 24 h8 M7 31 h7" stroke="#9aa1ab" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".5"/><path d="M31 4 L16 26 h7.5 l-3 18 17.5-26 h-8.5 l5 -16Z" fill="url(#periwV)"/><path d="M31 4 L16 26 h7.5" fill="none" stroke="#e0daff" stroke-width="1.5" stroke-linejoin="round" opacity=".75"/></svg></div><h3>3분 즉시 입금</h3><p>확인과 동시에<br class="br-mo" />입금 처리.<br>기다림 없는 빠른 거래로 소중한 시간을 아껴드립니다.</p></article>
+      <article class="feature reveal"><div class="feature-ico"><span class="fi-ring"></span><svg viewBox="0 0 48 48"><path d="M24 4 l15.5 5.2 v9.3 c0 10.3 -6.7 17 -15.5 19.5 -8.8 -2.5 -15.5 -9.2 -15.5 -19.5 V9.2Z" fill="url(#silv)"/><path d="M24 9 l11 3.7 v6.6 c0 7.3 -4.7 12 -11 13.8 -6.3 -1.8 -11 -6.5 -11 -13.8 V12.7Z" fill="url(#periwV)"/><path d="M24 4 l15.5 5.2 v3.8 c-5 -3 -10.5 -4.4 -15.5 -4.4Z" fill="#fff" opacity=".14"/><circle cx="24" cy="19" r="3.3" fill="#fff"/><path d="M22.3 21 h3.4 l1.1 6.5 h-5.6Z" fill="#fff"/></svg></div><h3>안전한 거래</h3><p>정식 사업자가 운영하는 안심 거래. 개인정보와 거래 내역을 철저히 보호합니다.</p></article>
+      <article class="feature reveal"><div class="feature-ico"><span class="fi-ring"></span><svg viewBox="0 0 48 48"><circle cx="24" cy="23" r="15" fill="none" stroke="#39354e" stroke-width="4" opacity=".3"/><path d="M24 8 A15 15 0 1 1 9.5 27" fill="none" stroke="url(#periw)" stroke-width="4" stroke-linecap="round"/><path d="M24 3 l-6.5 4.5 6.5 4.5Z" fill="#a89cf2"/><text x="24" y="28.5" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="15" font-weight="800" fill="url(#silv)">24</text></svg></div><h3>365일 24시간</h3><p>주말, 새벽, 공휴일에도 언제나 거래 가능. 필요할 때 바로 연결됩니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section live" id="live">
+  <span class="leaf-watermark lw-r" aria-hidden="true"></span>
+  <div class="container">
+    <header class="section-head reveal"><p class="kicker">LIVE STATUS</p><div class="ornament" aria-hidden="true"><i></i><svg viewBox="0 0 44 18"><path d="M22 3C15 3 7 8 2 15c8 1 15-2 20-8 5 6 12 9 20 8C37 8 29 3 22 3Z" fill="url(#foil)"/><path d="M22 7v8" stroke="#6e7888" stroke-width="1.3"/></svg><i></i></div><h2><span class="live-badge"><span class="live-dot"></span>LIVE</span> 실시간 거래내역</h2><p class="lead">지금 이 순간에도 우드티켓에서 거래가 이루어지고 있습니다.</p></header>
+    <div class="live-feed reveal" aria-label="실시간 거래 내역"><div class="feed-head"><span class="live-dot"></span>실시간 거래 내역</div><div class="feed-viewport"><ul class="feed-track">
+<li class="feed-row"><span class="feed-time">방금 전</span><span class="feed-name">김○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩500,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">1분 전</span><span class="feed-name">이○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩300,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">2분 전</span><span class="feed-name">박○○님</span><span class="feed-type">정보이용료 매입</span><span class="feed-amt">₩1,000,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">3분 전</span><span class="feed-name">정○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩250,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">4분 전</span><span class="feed-name">최○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩450,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">5분 전</span><span class="feed-name">강○○님</span><span class="feed-type">정보이용료 매입</span><span class="feed-amt">₩200,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">6분 전</span><span class="feed-name">윤○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩350,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">7분 전</span><span class="feed-name">임○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩600,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">방금 전</span><span class="feed-name">김○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩500,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">1분 전</span><span class="feed-name">이○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩300,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">2분 전</span><span class="feed-name">박○○님</span><span class="feed-type">정보이용료 매입</span><span class="feed-amt">₩1,000,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">3분 전</span><span class="feed-name">정○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩250,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">4분 전</span><span class="feed-name">최○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩450,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">5분 전</span><span class="feed-name">강○○님</span><span class="feed-type">정보이용료 매입</span><span class="feed-amt">₩200,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">6분 전</span><span class="feed-name">윤○○님</span><span class="feed-type">소액결제 매입</span><span class="feed-amt">₩350,000</span><span class="feed-badge">완료</span></li>
+<li class="feed-row"><span class="feed-time">7분 전</span><span class="feed-name">임○○님</span><span class="feed-type">신용카드 매입</span><span class="feed-amt">₩600,000</span><span class="feed-badge">완료</span></li>
+    </ul></div></div>
+  </div>
+</section>
+
+<section class="section review" id="review">
+  <div class="container"><header class="section-head reveal"><p class="kicker light">CUSTOMER REVIEW</p><div class="ornament light" aria-hidden="true"><i></i><svg viewBox="0 0 44 18"><path d="M22 3C15 3 7 8 2 15c8 1 15-2 20-8 5 6 12 9 20 8C37 8 29 3 22 3Z" fill="url(#foil)"/><path d="M22 7v8" stroke="#dfe6ef" stroke-width="1.3"/></svg><i></i></div><h2>고객의 신뢰로 성장합니다</h2><p class="lead">실제 거래 고객들이 직접 남긴 이용 후기입니다.</p></header></div>
+  <div class="marquee"><div class="marquee-row left"><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제로 진행했는데 한도 안에서 바로 처리됐어요. 복잡한 절차 없이 입금까지 3분도 안 걸렸습니다.</blockquote><figcaption><span class="avt">김</span>김○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>휴대폰 결제만으로 이렇게 빠를 줄 몰랐네요. 새벽에 신청했는데도 바로 상담되고 깔끔하게 끝났습니다.</blockquote><figcaption><span class="avt">이</span>이○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제 한도를 다 써서 걱정했는데 정보이용료로 추가 거래가 됐어요. 한도 막혔을 때 정말 유용합니다.</blockquote><figcaption><span class="avt">박</span>박○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>콘텐츠 이용료 한도로 진행했습니다. 안내가 친절해서 처음인데도 어렵지 않게 마쳤어요. 시세도 좋았고요.</blockquote><figcaption><span class="avt">최</span>최○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>신용카드로 이렇게 빠르게 거래될 줄 몰랐어요. 승인부터 입금까지 순식간이라 너무 편했습니다.</blockquote><figcaption><span class="avt">정</span>정○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>카드 한도 안에서 즉시 승인되고 바로 정산받았어요. 절차가 간단해서 믿고 또 이용하려고 합니다.</blockquote><figcaption><span class="avt">강</span>강○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제로 진행했는데 한도 안에서 바로 처리됐어요. 복잡한 절차 없이 입금까지 3분도 안 걸렸습니다.</blockquote><figcaption><span class="avt">김</span>김○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>휴대폰 결제만으로 이렇게 빠를 줄 몰랐네요. 새벽에 신청했는데도 바로 상담되고 깔끔하게 끝났습니다.</blockquote><figcaption><span class="avt">이</span>이○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제 한도를 다 써서 걱정했는데 정보이용료로 추가 거래가 됐어요. 한도 막혔을 때 정말 유용합니다.</blockquote><figcaption><span class="avt">박</span>박○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>콘텐츠 이용료 한도로 진행했습니다. 안내가 친절해서 처음인데도 어렵지 않게 마쳤어요. 시세도 좋았고요.</blockquote><figcaption><span class="avt">최</span>최○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>신용카드로 이렇게 빠르게 거래될 줄 몰랐어요. 승인부터 입금까지 순식간이라 너무 편했습니다.</blockquote><figcaption><span class="avt">정</span>정○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>카드 한도 안에서 즉시 승인되고 바로 정산받았어요. 절차가 간단해서 믿고 또 이용하려고 합니다.</blockquote><figcaption><span class="avt">강</span>강○○ 고객 · 신용카드 매입</figcaption></figure></div><div class="marquee-row right"><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>카드 한도 안에서 즉시 승인되고 바로 정산받았어요. 절차가 간단해서 믿고 또 이용하려고 합니다.</blockquote><figcaption><span class="avt">강</span>강○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>신용카드로 이렇게 빠르게 거래될 줄 몰랐어요. 승인부터 입금까지 순식간이라 너무 편했습니다.</blockquote><figcaption><span class="avt">정</span>정○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>콘텐츠 이용료 한도로 진행했습니다. 안내가 친절해서 처음인데도 어렵지 않게 마쳤어요. 시세도 좋았고요.</blockquote><figcaption><span class="avt">최</span>최○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제 한도를 다 써서 걱정했는데 정보이용료로 추가 거래가 됐어요. 한도 막혔을 때 정말 유용합니다.</blockquote><figcaption><span class="avt">박</span>박○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>휴대폰 결제만으로 이렇게 빠를 줄 몰랐네요. 새벽에 신청했는데도 바로 상담되고 깔끔하게 끝났습니다.</blockquote><figcaption><span class="avt">이</span>이○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제로 진행했는데 한도 안에서 바로 처리됐어요. 복잡한 절차 없이 입금까지 3분도 안 걸렸습니다.</blockquote><figcaption><span class="avt">김</span>김○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>카드 한도 안에서 즉시 승인되고 바로 정산받았어요. 절차가 간단해서 믿고 또 이용하려고 합니다.</blockquote><figcaption><span class="avt">강</span>강○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>신용카드로 이렇게 빠르게 거래될 줄 몰랐어요. 승인부터 입금까지 순식간이라 너무 편했습니다.</blockquote><figcaption><span class="avt">정</span>정○○ 고객 · 신용카드 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>콘텐츠 이용료 한도로 진행했습니다. 안내가 친절해서 처음인데도 어렵지 않게 마쳤어요. 시세도 좋았고요.</blockquote><figcaption><span class="avt">최</span>최○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제 한도를 다 써서 걱정했는데 정보이용료로 추가 거래가 됐어요. 한도 막혔을 때 정말 유용합니다.</blockquote><figcaption><span class="avt">박</span>박○○ 고객 · 정보이용료 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>휴대폰 결제만으로 이렇게 빠를 줄 몰랐네요. 새벽에 신청했는데도 바로 상담되고 깔끔하게 끝났습니다.</blockquote><figcaption><span class="avt">이</span>이○○ 고객 · 소액결제 매입</figcaption></figure><figure class="review-card"><span class="quote-mark">”</span><div class="stars">★★★★★</div><blockquote>소액결제로 진행했는데 한도 안에서 바로 처리됐어요. 복잡한 절차 없이 입금까지 3분도 안 걸렸습니다.</blockquote><figcaption><span class="avt">김</span>김○○ 고객 · 소액결제 매입</figcaption></figure></div></div>
+</section>
+
+<section class="section trust" id="trust">
+  <div class="container">
+    <header class="trust-head reveal">
+      <span class="trust-badge">최고가 매입 · 높은 거래량 · 높은 재방문율</span>
+      <h2><span class="accent">5년차 장기 업체 우드티켓</span><br>업체 1위 최고가 매입진행</h2>
+    </header>
+    <div class="trust-grid">
+      <article class="trust-card reveal">
+        <span class="trust-medal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M17 24 L12 44 l6-3.5 5 3 -3.5-15Z" fill="#9aa1ab"/><path d="M31 24 L36 44 l-6-3.5 -5 3 3.5-15Z" fill="#6e7888"/><circle cx="24" cy="18" r="14" fill="url(#silv)"/><circle cx="24" cy="18" r="14" fill="none" stroke="#fff" stroke-width="1" opacity=".4"/><circle cx="24" cy="18" r="10" fill="none" stroke="#fff" stroke-width="1" opacity=".28"/><path d="M24 10 l2.3 4.8 5.3 .5 -4 3.6 1.1 5.2 -4.7 -2.7 -4.7 2.7 1.1 -5.2 -4 -3.6 5.3 -.5Z" fill="url(#periwV)"/></svg></span>
+        <h3>고객만족도 1위</h3>
+        <p>거래량은 곧 고객만족도를 뜻합니다. ‘우드티켓’은 5년차 장기 업체로 고객만족도 1위와 함께 업계 거래량 1위를 지향합니다.</p>
+      </article>
+      <article class="trust-card reveal">
+        <span class="trust-medal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M17 24 L12 44 l6-3.5 5 3 -3.5-15Z" fill="#9aa1ab"/><path d="M31 24 L36 44 l-6-3.5 -5 3 3.5-15Z" fill="#6e7888"/><circle cx="24" cy="18" r="14" fill="url(#silv)"/><circle cx="24" cy="18" r="14" fill="none" stroke="#fff" stroke-width="1" opacity=".4"/><circle cx="24" cy="18" r="10" fill="none" stroke="#fff" stroke-width="1" opacity=".28"/><path d="M24 10 l2.3 4.8 5.3 .5 -4 3.6 1.1 5.2 -4.7 -2.7 -4.7 2.7 1.1 -5.2 -4 -3.6 5.3 -.5Z" fill="url(#periwV)"/></svg></span>
+        <h3>재방문율 1위</h3>
+        <p>만족이 재방문으로 이어집니다. ‘우드티켓’은 5년차 장기 운영으로 높은 재방문율을 기록하며 단골 고객과 오래 함께합니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section cta" id="contact">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container cta-inner reveal">
+    <div class="cta-seal" aria-hidden="true"><svg viewBox="0 0 96 96"><g fill="none" stroke="url(#foil)" stroke-width="1.6"><circle cx="48" cy="48" r="44"/><circle cx="48" cy="48" r="38" stroke-dasharray="2 4"/></g><text x="48" y="45" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="15" font-weight="800" fill="url(#foilV)">우드티켓</text><text x="48" y="61" text-anchor="middle" font-family='Noto Sans KR',sans-serif font-size="8" letter-spacing="2" fill="#c6ced9">SINCE 2021</text></svg></div>
+    <p class="kicker light">START WITH WOODTICKET</p><h2>지금 바로 상담신청 하세요!</h2><p class="lead">우드티켓은 365일 24시간 언제든 준비되어 있습니다.</p>
+    <div class="hero-cta"><a href="#contact" data-kakao class="btn btn-gold"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.8-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>카카오톡 상담</a><a href="tel:01000000000" data-phone class="btn btn-ghost light"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>전화 상담</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo"><img src="images/logo-mark.jpg" alt="우드티켓" width="32" height="32" /><span class="brand-text">우드티켓</span></span>
+      <p>업계 최저 수수료·5분입금·24시간 운영<br>5년 무사고 현금화 서비스를 운영해 온 전문 업체입니다.</p>
+      <p class="footer-biz">상호명 | 우드티켓 </p>
+    </div>
+    <nav class="footer-col" aria-label="매입 안내">
+      <h4>매입 안내</h4>
+      <a href="#items">매입 시세</a>
+      <a href="#how">진행 절차</a>
+      <a href="#review">고객후기</a>
+    </nav>
+    <nav class="footer-col" aria-label="고객 지원">
+      <h4>고객 지원</h4>
+      <a href="#contact" data-kakao>카카오톡 상담</a>
+      <a href="terms.html">이용약관</a>
+      <a href="privacy.html">개인정보처리방침</a>
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p>© 2026 우드티켓. All rights reserved</p>
+    <p>본 서비스는 합법적인 범위 내에서 운영되며, 관련 법령 및 통신사 정책을 준수합니다.</p>
+  </div>
+</footer>
+
+<div class="fab-stack">
+<a href="tel:01000000000" data-phone class="fab fab-phone" aria-label="전화 상담"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg></a>
+<a href="#contact" data-kakao class="fab" aria-label="카카오톡 상담"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.8-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+
+(function(){
+  var scene=document.getElementById("scene");
+  var bar=document.querySelector(".hub .bar");
+  var r=94,c=2*Math.PI*r;
+  bar.style.setProperty("--c",c); bar.style.strokeDasharray=c; bar.style.strokeDashoffset=c;
+
+  /* ===== 워프 캔버스 ===== */
+  var cv=document.getElementById("warp"), x=cv.getContext("2d");
+  var W,H,cx,cy,RMAX,DPR=Math.min(devicePixelRatio||1,2);
+  function rs(){
+    W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR;
+    cv.style.width=innerWidth+"px"; cv.style.height=innerHeight+"px";
+    cx=W/2; cy=H/2;
+    /* 화면 대각선의 절반 + 여유 → 세로로 긴 화면에서도 빛줄기가 구석까지 닿음 */
+    RMAX=Math.sqrt(W*W+H*H)*0.5*1.08;
+  }
+  rs(); addEventListener("resize",rs);
+
+  var COUNT=1000, stars=[];
+  function spawn(s){
+    /* z: 중앙(0) ~ RMAX(대각선 끝). 각도+초기깊이 랜덤 */
+    s.a=Math.random()*Math.PI*2;
+    s.z=Math.random()*RMAX;
+    s.pz=s.z;
+    var col=Math.random();
+    s.hue= col<.2? "180,205,255" : col<.4? "200,185,255" : "225,235,255";
+    s.w=Math.random()*1.2+.5;     // 굵기
+  }
+  for(var i=0;i<COUNT;i++){var s={};spawn(s);stars.push(s);}
+
+  var prog=0;          // 0~1
+  var collapse=0;      // 0~1 블랙홀 구체 확장(전환)
+  var booming=false;
+  var boomT=0;
+  var finished=false;
+  var HOLD=70*DPR;     // 중앙 빈 반경(진행 원 안쪽)
+
+  function frame(){
+    if(booming){
+      /* 붕괴 단계: 잔상 누적 금지 → 매 프레임 완전 클리어 (흰색 타는 것 방지) */
+      x.globalCompositeOperation="source-over";
+      x.fillStyle="#04040a";
+      x.fillRect(0,0,W,H);
+    } else {
+      /* 잔상(모션블러) — 완전 클리어 대신 반투명 검정 덧칠 */
+      x.fillStyle="rgba(4,4,10,"+(0.28 - prog*0.12)+")";
+      x.fillRect(0,0,W,H);
+    }
+
+    /* 중앙 소실점 글로우 — 검은 구멍 대신 빛무리(워프에 자연스럽게 녹음) */
+    var gr = (46 + prog*30) * DPR;
+    var cg = x.createRadialGradient(cx,cy,0, cx,cy, gr);
+    var ca = (0.22 + prog*0.25) * (1 - collapse);
+    cg.addColorStop(0, "rgba(205,225,255,"+(ca)+")");
+    cg.addColorStop(0.5, "rgba(150,185,255,"+(ca*0.5)+")");
+    cg.addColorStop(1, "rgba(124,108,232,0)");
+    x.globalCompositeOperation="lighter";
+    x.fillStyle=cg;
+    x.beginPath(); x.arc(cx,cy,gr,0,6.283); x.fill();
+    x.globalCompositeOperation="source-over";
+
+    /* 진행도에 따라 속도 급증 (느릿 → 슈슉) */
+    var speed = (2 + prog*prog*46) * DPR;
+
+    /* 붕괴 시작 전까지만 별빛 워프 그리기 (붕괴 중엔 별 안 그림 → 각짐 없음) */
+    if(!booming){
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        s.pz=s.z;
+        s.z += speed * (0.6 + s.w*0.5);
+        if(s.z>=RMAX){ spawn(s); s.z=HOLD; s.pz=HOLD; continue; }
+
+        var rad = s.z, prad = s.pz;
+        if(rad<HOLD){ rad=HOLD; }
+        var cosA=Math.cos(s.a), sinA=Math.sin(s.a);
+        var X=cx+cosA*rad,   Y=cy+sinA*rad;
+        var PX=cx+cosA*prad, PY=cy+sinA*prad;
+
+        var edge = rad/(RMAX*0.62);
+        var alpha = Math.min(1, 0.12 + edge*1.1) * (0.5 + prog*0.5);
+        var lw = (s.w + edge*2.6) * DPR;
+
+        x.beginPath();
+        x.moveTo(PX,PY); x.lineTo(X,Y);
+        x.strokeStyle="rgba("+s.hue+","+alpha+")";
+        x.lineWidth=lw;
+        x.lineCap="round";
+        x.stroke();
+      }
+    }
+
+    /* 붕괴: 시공간이 휘는 구체가 커지며 화면을 채움 (흰빛 없음, B안) */
+    if(booming){
+      /* 시간 기반(프레임 속도 무관): boom 후 경과시간으로 진행 — 약 650ms에 완료 */
+      var bt = (performance.now() - boomT) / 450;
+      collapse = Math.min(1, bt);
+      var ec = collapse<.5 ? 2*collapse*collapse : 1-Math.pow(-2*collapse+2,2)/2; // easeInOut
+      var base = RMAX;
+      var ringR = (HOLD*0.5 + ec*base*1.5);    // 구체(광자 링) 반경 — 빠르게 커져 화면 밖으로
+      var ringW = ringR*0.14 + 2*DPR;          // 링 두께
+      var coreR = ringR*0.93;                  // 어두운 코어
+
+      /* 1) 바깥쪽 따뜻한 강착원반 글로우 (블랙홀 사진의 주황빛) */
+      x.globalCompositeOperation="lighter";
+      var halo=x.createRadialGradient(cx,cy,coreR*0.8, cx,cy,ringR*1.6);
+      var ha=(1-collapse*0.5);
+      halo.addColorStop(0,"rgba(255,180,120,0)");
+      halo.addColorStop(0.5,"rgba(255,168,108,"+(0.12*ha)+")");
+      halo.addColorStop(0.64,"rgba(255,148,88,"+(0.18*ha)+")");
+      halo.addColorStop(1,"rgba(120,90,160,0)");
+      x.fillStyle=halo;
+      x.beginPath(); x.arc(cx,cy,ringR*1.6,0,6.283); x.fill();
+
+      /* 2) 밝은 광자 링 (시공간 휘는 빛, 청백색) — 부드러운 그라데이션 */
+      var ring=x.createRadialGradient(cx,cy,Math.max(coreR-ringW*2.4,1), cx,cy,ringR+ringW*2.2);
+      var ra=(1-collapse*0.35);
+      ring.addColorStop(0,"rgba(200,225,255,0)");
+      ring.addColorStop(0.55,"rgba(205,228,255,0)");
+      ring.addColorStop(0.74,"rgba(214,232,255,"+(0.22*ra)+")");
+      ring.addColorStop(0.88,"rgba(232,242,255,"+(0.7*ra)+")");
+      ring.addColorStop(0.955,"rgba(255,255,255,"+(0.95*ra)+")");
+      ring.addColorStop(0.99,"rgba(206,224,255,"+(0.25*ra)+")");
+      ring.addColorStop(1,"rgba(190,210,255,0)");
+      x.fillStyle=ring;
+      x.beginPath(); x.arc(cx,cy,ringR+ringW*2.2,0,6.283); x.fill();
+      x.globalCompositeOperation="source-over";
+
+      /* 3) 어두운 코어 — 빛이 빨려든 구체. 커지며 화면을 채움 */
+      var core=x.createRadialGradient(cx,cy,0, cx,cy,coreR);
+      core.addColorStop(0,"rgba(3,3,9,1)");
+      core.addColorStop(0.82,"rgba(4,4,11,1)");
+      core.addColorStop(1,"rgba(5,5,13,0)");
+      x.fillStyle=core;
+      x.beginPath(); x.arc(cx,cy,coreR,0,6.283); x.fill();
+
+      /* 붕괴(0.3초) 완료 시 → 오버레이 제거하며 사이트 노출 */
+      if(collapse >= 1 && !finished){
+        finished=true;
+        if(scene&&scene.parentNode){scene.parentNode.removeChild(scene);}
+        return;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* 0→100 (5초) */
+  var DUR=1200,t0=null;
+  function tick(t){
+    if(!t0)t0=t;
+    var p=Math.min((t-t0)/DUR,1);
+    var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+    prog=e;
+    if(p<1)requestAnimationFrame(tick);
+    else{ boom(); }
+  }
+  function boom(){
+    prog=1;              // 워프 정점 유지 (추가 폭주 없음)
+    booming=true;        // 블랙홀 구체 확장 시작
+    boomT=performance.now();
+    scene.classList.add("boom");
+    /* 안전장치: 혹시 트리거를 놓쳐도 일정 시간 뒤 오버레이 제거 */
+    setTimeout(function(){
+      if(!finished){ finished=true; if(scene&&scene.parentNode){scene.parentNode.removeChild(scene);} }
+    },700);
+  }
+  requestAnimationFrame(function(){scene.classList.add("run");requestAnimationFrame(tick);});
+})();
+
+</script>
+</body>
+</html>

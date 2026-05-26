@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 검색엔진 크롤링 허용
+Sitemap: https://www.woodticket.co.kr/sitemap.xml

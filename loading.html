@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>우드티켓</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#04040a;font-family:"Noto Sans KR",sans-serif}
+.scene{position:fixed;inset:0;overflow:hidden;background:#04040a}
+#warp{position:absolute;inset:0;z-index:1}
+.l{position:absolute;inset:0;pointer-events:none}
+
+/* 중앙 진행 원 */
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+  width:min(280px,58vw);aspect-ratio:1/1;display:grid;place-items:center}
+.hub svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hub .track{fill:none;stroke:rgba(160,185,255,.16);stroke-width:2}
+.hub .glow{fill:none;stroke:url(#g);stroke-width:8;stroke-linecap:round;opacity:.55;
+  stroke-dasharray:var(--c);stroke-dashoffset:var(--c)}
+.hub .bar{fill:none;stroke:url(#g);stroke-width:4.5;stroke-linecap:round;
+  stroke-dasharray:var(--c);stroke-dashoffset:var(--c)}
+.scene.run .hub .glow,.scene.run .hub .bar{animation:fill 1.5s cubic-bezier(.4,0,.5,1) forwards}
+@keyframes fill{to{stroke-dashoffset:0}}
+@keyframes hubGlow{0%,100%{opacity:.7;transform:scale(.95)}50%{opacity:1;transform:scale(1.08)}}
+
+
+.cap{position:absolute;left:0;right:0;bottom:12%;z-index:7;text-align:center;
+  color:rgba(170,182,210,.8);font-size:.84rem;letter-spacing:.16em;font-weight:300}
+.cap .brand{font-weight:700;font-size:1.05rem;letter-spacing:.24em;display:block;margin-bottom:.5rem;
+  background:linear-gradient(90deg,#cfe0ff,#9a8ef0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* 비네팅(가장자리만 살짝 어둡게 → 워프 깊이감) */
+.vignette{z-index:3;background:radial-gradient(120% 100% at 50% 50%,transparent 48%,rgba(4,4,10,.55) 100%)}
+
+.scene.boom .hub,.scene.boom .pct,.scene.boom .cap{animation:fade .35s ease forwards}
+@keyframes fade{to{opacity:0}}
+.scene.done{animation:reveal .5s ease forwards}
+@keyframes reveal{to{opacity:0;visibility:hidden}}
+
+@media (prefers-reduced-motion:reduce){.scene.run .hub .bar{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <canvas id="warp"></canvas>
+
+  <div class="hub">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3.4"/>
+        </filter>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#9ad0ff"/>
+          <stop offset=".35" stop-color="#cfe0ff"/>
+          <stop offset=".5" stop-color="#ffffff"/>
+          <stop offset=".65" stop-color="#dfeaff"/>
+          <stop offset="1" stop-color="#b3a8f5"/>
+          <animateTransform attributeName="gradientTransform" type="rotate"
+            from="0 100 100" to="360 100 100" dur="3.2s" repeatCount="indefinite"/>
+        </linearGradient>
+      </defs>
+      <circle class="track" cx="100" cy="100" r="92"/>
+      <circle class="glow" cx="100" cy="100" r="92" filter="url(#soft)"/>
+      <circle class="bar" cx="100" cy="100" r="92"/>
+    </svg>
+  </div>
+  <div class="cap"><span class="brand">WOODTICKET</span></div>
+
+  <div class="l vignette"></div>
+</div>
+
+<script>
+(function(){
+  var scene=document.getElementById("scene");
+  var bar=document.querySelector(".hub .bar");
+  var r=94,c=2*Math.PI*r;
+  bar.style.setProperty("--c",c); bar.style.strokeDasharray=c; bar.style.strokeDashoffset=c;
+
+  /* ===== 워프 캔버스 ===== */
+  var cv=document.getElementById("warp"), x=cv.getContext("2d");
+  var W,H,cx,cy,DPR=Math.min(devicePixelRatio||1,2);
+  function rs(){
+    W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR;
+    cv.style.width=innerWidth+"px"; cv.style.height=innerHeight+"px";
+    cx=W/2; cy=H/2;
+  }
+  rs(); addEventListener("resize",rs);
+
+  var COUNT=460, stars=[];
+  function spawn(s){
+    /* z: 깊이(작을수록 멀다=중앙). 각도+초기깊이 랜덤 */
+    s.a=Math.random()*Math.PI*2;
+    s.z=Math.random()*W;          // 0(중앙) ~ W(가장자리)
+    s.pz=s.z;
+    /* 중앙 비워두는 최소 반경 위해 약간의 시작오프셋 */
+    var col=Math.random();
+    s.hue= col<.2? "180,205,255" : col<.4? "200,185,255" : "225,235,255";
+    s.w=Math.random()*1.2+.5;     // 굵기
+  }
+  for(var i=0;i<COUNT;i++){var s={};spawn(s);stars.push(s);}
+
+  var prog=0;          // 0~1
+  var collapse=0;      // 0~1 블랙홀 구체 확장(전환)
+  var booming=false;
+  var HOLD=70*DPR;     // 중앙 빈 반경(진행 원 안쪽)
+  var navigated=false;
+
+  function frame(){
+    if(booming){
+      /* 붕괴 단계: 잔상 누적 금지 → 매 프레임 완전 클리어 (흰색 타는 것 방지) */
+      x.globalCompositeOperation="source-over";
+      x.fillStyle="#04040a";
+      x.fillRect(0,0,W,H);
+    } else {
+      /* 잔상(모션블러) — 완전 클리어 대신 반투명 검정 덧칠 */
+      x.fillStyle="rgba(4,4,10,"+(0.28 - prog*0.12)+")";
+      x.fillRect(0,0,W,H);
+    }
+
+    /* 중앙 소실점 글로우 — 검은 구멍 대신 빛무리(워프에 자연스럽게 녹음) */
+    var gr = (46 + prog*30) * DPR;
+    var cg = x.createRadialGradient(cx,cy,0, cx,cy, gr);
+    var ca = (0.22 + prog*0.25) * (1 - collapse);
+    cg.addColorStop(0, "rgba(205,225,255,"+(ca)+")");
+    cg.addColorStop(0.5, "rgba(150,185,255,"+(ca*0.5)+")");
+    cg.addColorStop(1, "rgba(124,108,232,0)");
+    x.globalCompositeOperation="lighter";
+    x.fillStyle=cg;
+    x.beginPath(); x.arc(cx,cy,gr,0,6.283); x.fill();
+    x.globalCompositeOperation="source-over";
+
+    /* 진행도에 따라 속도 급증 (느릿 → 슈슉) */
+    var speed = (2 + prog*prog*46) * DPR;
+
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i];
+      s.pz=s.z;
+      if(booming){
+        s.z -= (s.z*0.11 + 6*DPR) * (0.6 + collapse*1.7);  // 중심으로 빨려듦
+        s.a += 0.05 * collapse;                            // 살짝 휘감기
+        if(s.z<2){ s.z=2; s.pz=2; }
+      } else {
+        s.z += speed * (0.6 + s.w*0.5);
+        if(s.z>=W){ spawn(s); s.z=HOLD; s.pz=HOLD; continue; }
+      }
+
+      /* 현재/이전 위치를 투영 — z가 클수록 바깥으로 */
+      var rad = s.z, prad = s.pz;
+      if(!booming && rad<HOLD){ rad=HOLD; }
+      var cosA=Math.cos(s.a), sinA=Math.sin(s.a);
+      var X=cx+cosA*rad,   Y=cy+sinA*rad;
+      var PX=cx+cosA*prad, PY=cy+sinA*prad;
+
+      /* 바깥으로 갈수록 굵고 밝고 길게(워프 스트릭) */
+      var edge = rad/(Math.max(W,H)*0.62);
+      var alpha = Math.min(1, 0.12 + edge*1.1) * (0.5 + prog*0.5);
+      if(booming){ alpha *= (1 - collapse*0.85); }
+      var lw = (s.w + edge*2.6) * DPR;
+
+      x.beginPath();
+      x.moveTo(PX,PY); x.lineTo(X,Y);
+      x.strokeStyle="rgba("+s.hue+","+alpha+")";
+      x.lineWidth=lw;
+      x.lineCap="round";
+      x.stroke();
+    }
+
+    /* 붕괴: 시공간이 휘는 구체가 커지며 화면을 채움 (흰빛 없음, B안) */
+    if(booming){
+      collapse = Math.min(1, collapse + 0.013);
+      var ec = collapse<.5 ? 2*collapse*collapse : 1-Math.pow(-2*collapse+2,2)/2; // easeInOut
+      var base = Math.max(W,H);
+      var ringR = (HOLD*0.5 + ec*base*0.85);   // 구체(광자 링) 반경 — 점점 커져 화면을 채움
+      var ringW = ringR*0.14 + 2*DPR;          // 링 두께
+      var coreR = ringR*0.93;                  // 어두운 코어
+
+      /* 1) 바깥쪽 따뜻한 강착원반 글로우 (블랙홀 사진의 주황빛) */
+      x.globalCompositeOperation="lighter";
+      var halo=x.createRadialGradient(cx,cy,coreR*0.8, cx,cy,ringR*1.6);
+      var ha=(1-collapse*0.5);
+      halo.addColorStop(0,"rgba(255,180,120,0)");
+      halo.addColorStop(0.5,"rgba(255,168,108,"+(0.12*ha)+")");
+      halo.addColorStop(0.64,"rgba(255,148,88,"+(0.18*ha)+")");
+      halo.addColorStop(1,"rgba(120,90,160,0)");
+      x.fillStyle=halo;
+      x.beginPath(); x.arc(cx,cy,ringR*1.6,0,6.283); x.fill();
+
+      /* 2) 밝은 광자 링 (시공간 휘는 빛, 청백색) */
+      var ring=x.createRadialGradient(cx,cy,Math.max(coreR-ringW,1), cx,cy,ringR+ringW);
+      var ra=(1-collapse*0.35);
+      ring.addColorStop(0,"rgba(200,225,255,0)");
+      ring.addColorStop(0.80,"rgba(210,230,255,0)");
+      ring.addColorStop(0.91,"rgba(228,240,255,"+(0.9*ra)+")");
+      ring.addColorStop(0.975,"rgba(255,255,255,"+(0.98*ra)+")");
+      ring.addColorStop(1,"rgba(190,210,255,0)");
+      x.fillStyle=ring;
+      x.beginPath(); x.arc(cx,cy,ringR+ringW,0,6.283); x.fill();
+      x.globalCompositeOperation="source-over";
+
+      /* 3) 어두운 코어 — 빛이 빨려든 구체. 커지며 화면을 채움 */
+      var core=x.createRadialGradient(cx,cy,0, cx,cy,coreR);
+      core.addColorStop(0,"rgba(3,3,9,1)");
+      core.addColorStop(0.82,"rgba(4,4,11,1)");
+      core.addColorStop(1,"rgba(5,5,13,0)");
+      x.fillStyle=core;
+      x.beginPath(); x.arc(cx,cy,coreR,0,6.283); x.fill();
+
+      /* 구체가 화면을 거의 채우면 → 그 안에서 바로 사이트로 (B안: 암전 순간 최소) */
+      if(coreR >= base*0.62 && !navigated){
+        navigated=true;
+        location.href="index.html";
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* 0→100 (5초) */
+  var DUR=1500,t0=null;
+  function tick(t){
+    if(!t0)t0=t;
+    var p=Math.min((t-t0)/DUR,1);
+    var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+    prog=e;
+    if(p<1)requestAnimationFrame(tick);
+    else{ boom(); }
+  }
+  function boom(){
+    prog=1;              // 워프 정점 유지 (추가 폭주 없음 — 이제 안으로 빨려듦)
+    booming=true;        // 블랙홀 구체 확장 시작
+    scene.classList.add("boom");
+    /* 안전장치: 혹시 전환 트리거를 놓쳐도 일정 시간 뒤 이동 */
+    setTimeout(function(){ if(!navigated){ navigated=true; location.href="index.html"; } },2200);
+  }
+  requestAnimationFrame(function(){scene.classList.add("run");requestAnimationFrame(tick);});
+})();
+</script>
+</body>
+</html>
