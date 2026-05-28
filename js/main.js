@@ -63,7 +63,7 @@
 
   /* ====== 카카오톡 상담 링크 (★여기 한 줄만 바꾸면 모든 카카오 버튼이 연결됩니다) ====== */
   /* 예: var KAKAO_URL = "https://open.kakao.com/o/내오픈톡주소"; */
-  var KAKAO_URL = "https://open.kakao.com/o/sImx4dwi";
+  var KAKAO_URL = "https://vvd.im/wd24";
 
   /* ====== CS 상담 전화번호 (★여기 한 줄만 바꾸면 메인의 모든 전화상담 버튼이 연결됩니다) ====== */
   /* 예: var PHONE = "1600-1234";  ← 하이픈 포함해서 입력 (비우면 기존 placeholder 유지) */
