@@ -93,6 +93,8 @@ h1,h2,h3{line-height:1.22;letter-spacing:-.02em;font-weight:600}
 /* 히어로 카피 영역 + 하단 CTA 버튼 2개: 좌우 동일 너비 (글자 길이와 무관) */
 .hero-copy .hero-cta,.cta .hero-cta{max-width:480px}
 .hero-copy .hero-cta .btn,.cta .hero-cta .btn{flex:1 1 0;min-width:0}
+/* 히어로 버튼: 글 영역 왼쪽 끝에 딱 맞춰 왼쪽 정렬 (모든 PC 동일) */
+.hero-copy .hero-cta{justify-content:flex-start;margin-left:0;margin-right:0}
 .hero-stats{display:flex;gap:clamp(1.4rem,4vw,3rem);margin-top:3.4rem;padding-top:2.2rem;border-top:1px solid rgba(111,160,242,.2)}
 .hero-stats strong{display:block;font-family:var(--num);font-size:clamp(2.1rem,4.8vw,3rem);font-weight:800;color:#cbd0d8;line-height:1;letter-spacing:-.02em}
 .hero-stats strong i{font-style:normal;font-size:.58em;font-weight:700;margin-left:.05em}
